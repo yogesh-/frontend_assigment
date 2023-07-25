@@ -26,9 +26,18 @@ app.use(bodyParser.json());
 
 app.enable('trust proxy');
 
-app.post('/api/fetchStockData', (req, res) => {
-    // YOUR CODE GOES HERE, PLEASE DO NOT EDIT ANYTHING OUTSIDE THIS FUNCTION
-    res.sendStatus(200);
+app.get('/api/fetchStockData', async(req, res) => {
+    //YOUR CODE GOES HERE, PLEASE DO NOT EDIT ANYTHING OUTSIDE THIS FUNCTION
+    const stock_name = req.query.stock;
+    const date = req.query.date;
+    try {
+        const response_data = await fetch(`https://api.polygon.io/v2/aggs/ticker/${stock_name}/range/1/day/${date}/${date}?apiKey=${process.env.API_KEY}`)
+        const final_data = await response_data.json()
+        res.status(200).send({stock:final_data.ticker,stats:final_data.results,status:final_data.status});
+    } catch (error) {
+        console.log(`Could not get response: ${error}`)
+        res.status(500).send({status:500})
+    }
 });
 
 const port = process.env.PORT || 5000;

@@ -1,0 +1,41 @@
+body{background-color: aliceblue}
+
+form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    margin: auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    width: 30%;
+}
+
+input{
+    height: 25px;
+    border-radius: 2%;
+}
+
+h4{
+    text-align: center;
+}
+
+.server-response{
+    /* background-color: brown; */
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: auto;
+    border: 2px solid wheat;
+}
+
+.server-response h1{
+text-align: center;}
+
+.server-response h3{
+    padding-left: 10px;
+}
+
+.spinner{
+    display: flex;
+    justify-content: center;
+}
